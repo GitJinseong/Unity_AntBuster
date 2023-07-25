@@ -6,7 +6,8 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject startPoint = default;
     public GameObject enemyPrefab = default;
-    public const float SPAWN_TIME = 0.5f;
+    public const float SPAWN_TIME = 0.1f;
+    public const int MAX_MONSTER_SPAWN_SIZE = 100;
     public List<GameObject> enemyList = default;
     public int enemyHp = 100;
 
@@ -22,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
     public void CreateEnemys()
     {
         //Vector2 targetPos = new Vector2(transform.position.x, transform.position.y);
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < MAX_MONSTER_SPAWN_SIZE; i++)
         {
             GameObject enemy = Instantiate(enemyPrefab, transform.position,
                 transform.rotation, transform);

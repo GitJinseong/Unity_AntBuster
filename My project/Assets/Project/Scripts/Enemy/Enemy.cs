@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public Rigidbody2D rigid;
     public float speed = 3f;
     public int hp = 100;
+    public int giveGolds = 10;
 
     // Start is called before the first frame update
 
@@ -60,6 +61,7 @@ public class Enemy : MonoBehaviour
         {
             Debug.Log("ÆÄ±«");
             GameManager.instance.AddScore();
+            GameManager.instance.AddGold(Random.Range(1, 10));
             gameObject.SetActive(false);
         }
     }

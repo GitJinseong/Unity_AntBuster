@@ -6,7 +6,7 @@ public class ForTopController : MonoBehaviour
 {
     public GameObject bulletPrefab = default;
     public GameObject target = default;
-    public float searchRadius = 10f;
+    public float searchRadius = 2f;
     public float spawnTime = 1f;
     // Start is called before the first frame update
     void Start()
@@ -31,10 +31,10 @@ public class ForTopController : MonoBehaviour
             {
                 Debug.Log("태그가맞다.");
                 target = collider.gameObject;
-                GameObject bullet = Instantiate(bulletPrefab, Vector2.zero,
-                transform.rotation, transform);
-                ForTopBullet bulletComponenent = bullet.GetComponent<ForTopBullet>();
-                bulletComponenent.SetTarget(target);
+                GameObject bullet = Instantiate(bulletPrefab, transform.position,
+                    transform.rotation);
+                ForTopBullet bulletComponent = bullet.GetComponent<ForTopBullet>();
+                bulletComponent.SetTarget(target);
                 break;
             }
         }

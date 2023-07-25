@@ -7,8 +7,18 @@ using static UnityEngine.GraphicsBuffer;
 public class ForTopBullet : MonoBehaviour
 {
     public float speed = 1000f;
+    public int damage = 30;
     private GameObject target;
     private Rigidbody2D rigid; // Rigidbody2D 컴포넌트를 저장하기 위한 변수
+
+    private void FixedUpdate()
+    {
+        // 타겟이 있을 경우
+        if (target != null)
+        {
+            Move();
+        }
+    }
 
     private void Start()
     {
@@ -17,11 +27,6 @@ public class ForTopBullet : MonoBehaviour
     }
     private void Update()
     {
-        // 타겟이 있을 경우
-        if (target != null)
-        {
-            Move();
-        }
     }
 
     public void SetTarget(GameObject target)
@@ -35,12 +40,12 @@ public class ForTopBullet : MonoBehaviour
         rigid.velocity = direction * speed;
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.tag.Equals("Enemy"))
+        if (collision.collider.tag.Equals("Enemy"))
         {
-            Enemy enemyComponent = collision.GetComponent<Enemy>();
-            enemyComponent.Damage(100);
+            Enemy enemyComponent = collision.collider.GetComponent<Enemy>();
+            enemyComponent.Damage(damage);
         }
         gameObject.SetActive(false);
     }
